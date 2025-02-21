@@ -49,10 +49,11 @@ class _FourCornersState extends State<FourCorners>
       begin: 1,
       end: 4,
     ).animate(_animationController);
+
+    //! https://api.flutter.dev/flutter/animation/TweenSequence-class.html
   }
 
   void listener() {
-    print(_stepsAnimation.value);
     if (_stepsAnimation == 1.0) {
       startColumn = 1;
       endColumn = 1;
@@ -74,6 +75,7 @@ class _FourCornersState extends State<FourCorners>
       startLine = 1;
       endLine = 1;
     }
+    print(_stepsAnimation.value);
     setState(() {
       print('startColumn + $startColumn');
     });
