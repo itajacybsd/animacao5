@@ -51,6 +51,28 @@ class _FourCornersState extends State<FourCorners>
     ).animate(_animationController);
 
     //! https://api.flutter.dev/flutter/animation/TweenSequence-class.html
+
+    final Animation<double> animation =
+        TweenSequence<double>(<TweenSequenceItem<double>>[
+          TweenSequenceItem<double>(
+            tween: Tween<double>(
+              begin: 5.0,
+              end: 10.0,
+            ).chain(CurveTween(curve: Curves.ease)),
+            weight: 40.0,
+          ),
+          TweenSequenceItem<double>(
+            tween: ConstantTween<double>(10.0),
+            weight: 20.0,
+          ),
+          TweenSequenceItem<double>(
+            tween: Tween<double>(
+              begin: 10.0,
+              end: 5.0,
+            ).chain(CurveTween(curve: Curves.ease)),
+            weight: 40.0,
+          ),
+        ]).animate(_animationController);
   }
 
   void listener() {
@@ -114,3 +136,5 @@ class _FourCornersState extends State<FourCorners>
     );
   }
 }
+
+//!
