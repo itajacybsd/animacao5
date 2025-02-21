@@ -52,28 +52,31 @@ class _FourCornersState extends State<FourCorners>
   }
 
   void listener() {
-    if (_stepsAnimation == 1.0 as Animation<double>) {
+    print(_stepsAnimation.value);
+    if (_stepsAnimation == 1.0) {
       startColumn = 1;
       endColumn = 1;
       startLine = 1;
       endLine = -1;
-    } else if (_stepsAnimation == 2.0 as Animation<double>) {
+    } else if (_stepsAnimation == 2.0) {
       startColumn = 1;
       endColumn = -1;
       startLine = -1;
       endLine = -1;
-    } else if (_stepsAnimation == 3.0 as Animation<double>) {
+    } else if (_stepsAnimation == 3.0) {
       startColumn = -1;
       endColumn = -1;
       startLine = -1;
       endLine = 1;
-    } else if (_stepsAnimation == 4.0 as Animation<double>) {
+    } else if (_stepsAnimation == 4.0) {
       startColumn = -1;
       endColumn = 1;
       startLine = 1;
       endLine = 1;
     }
-    setState(() {});
+    setState(() {
+      print('startColumn + $startColumn');
+    });
   }
 
   @override
