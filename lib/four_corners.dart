@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class FourCorners extends StatefulWidget {
@@ -27,8 +29,6 @@ class _FourCornersState extends State<FourCorners>
     );
 
     _animationController.addListener(listener);
-
-    
 
     //! https://api.flutter.dev/flutter/animation/TweenSequence-class.html
 
@@ -81,9 +81,7 @@ class _FourCornersState extends State<FourCorners>
   }
 
   void listener() {
-    
-    setState(() {
-    });
+    setState(() {});
   }
 
   @override
@@ -116,10 +114,11 @@ class _FourCornersState extends State<FourCorners>
                 borderRadius: BorderRadius.circular(_borderAnimation.value),
               ),
             ),
+          
+            ),
           ),
         ),
-      ),
+      
     );
   }
 }
-
