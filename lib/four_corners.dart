@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class FourCorners extends StatefulWidget {
@@ -11,22 +13,14 @@ class _FourCornersState extends State<FourCorners>
     with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
 
- 
-
   late Animation<Alignment> _alignmentAnimation;
-
-  late double startLine;
-  late double endLine;
-  late double startColumn;
-  late double endColumn;
+  late Animation<double> _borderAnimation;
+  late Animation<double> _rotationAnimation;
+  late Animation<Color?> _colorAnimation;
 
   @override
   void initState() {
     super.initState();
-    startColumn = 1;
-    endColumn = 1;
-    startLine = 1;
-    endLine = -1;
 
     _animationController = AnimationController(
       duration: Duration(milliseconds: 2000),
@@ -34,8 +28,6 @@ class _FourCornersState extends State<FourCorners>
     );
 
     _animationController.addListener(listener);
-
-    
 
     //! https://api.flutter.dev/flutter/animation/TweenSequence-class.html
 
@@ -70,12 +62,25 @@ class _FourCornersState extends State<FourCorners>
             weight: 25.0,
           ),
         ]).animate(_animationController);
+
+    _borderAnimation = Tween<double>(
+      begin: 0,
+      end: 35,
+    ).animate(_animationController);
+
+    _rotationAnimation = Tween<double>(
+      begin: 0,
+      end: 3.1415,
+    ).animate(_animationController);
+
+    _colorAnimation = ColorTween(
+      begin: Colors.blue,
+      end: Colors.red,
+    ).animate(_animationController);
   }
 
   void listener() {
-    
-    setState(() {
-    });
+    setState(() {});
   }
 
   @override
@@ -97,15 +102,20 @@ class _FourCornersState extends State<FourCorners>
                 ? _animationController.reverse()
                 : _animationController.forward();
           },
-          child: Container(
-            margin: EdgeInsets.all(16),
-            height: 70,
-            width: 70,
-            decoration: BoxDecoration(color: Colors.blue),
+          child: Transform.rotate(
+            angle: _rotationAnimation.value,
+            child: Container(
+              margin: EdgeInsets.all(16),
+              height: 70,
+              width: 70,
+              decoration: BoxDecoration(
+                color: _colorAnimation.value,
+                borderRadius: BorderRadius.circular(_borderAnimation.value),
+              ),
+            ),
           ),
         ),
       ),
     );
   }
 }
-
